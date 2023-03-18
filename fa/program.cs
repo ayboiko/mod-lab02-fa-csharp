@@ -16,25 +16,172 @@ namespace fans
 
   public class FA1
   {
+    public static State a = new State()
+    {
+      Name = "a",
+      IsAcceptState = false,
+      Transitions = new Dictionary<char, State>()
+      };    
+    public State b = new State()
+    {
+      Name = "b",
+      IsAcceptState = false,
+      Transitions = new Dictionary<char, State>()
+      };    
+    public State c = new State()
+    {
+      Name = "c",
+      IsAcceptState = false,
+      Transitions = new Dictionary<char, State>()
+      };
+    public State d = new State()
+    {
+      Name = "d",
+      IsAcceptState = true,
+      Transitions = new Dictionary<char, State>()
+      };
+    public State e = new State()
+    {
+      Name = "e",
+      IsAcceptState = false,
+      Transitions = new Dictionary<char, State>()
+      };
+    public State i = new State()
+    {
+      Name = "i",
+      IsAcceptState = false,
+      Transitions = new Dictionary<char, State>()
+      };
+    
+    State InitialState = a;
+    public FA1()
+    {
+      a.Transitions['0'] = b;
+      a.Transitions['1'] = c;
+      b.Transitions['0'] = i;
+      b.Transitions['1'] = d;
+      c.Transitions['0'] = d;
+      c.Transitions['1'] = c;
+      d.Transitions['0'] = e;
+      d.Transitions['1'] = d;
+      e.Transitions['0'] = e;
+      e.Transitions['1'] = e;
+      i.Transitions['1'] = i;
+      i.Transitions['0'] = i;
+    }
     public bool? Run(IEnumerable<char> s)
     {
-      return false;
+      State current = InitialState;
+      foreach (var c in s)
+      {
+        current = current.Transitions[c];
+        if (current == null)
+          return null;
+      }
+      return current.IsAcceptState;
     }
   }
 
   public class FA2
   {
+    public static State a = new State()
+    {
+      Name = "a",
+      IsAcceptState = false,
+      Transitions = new Dictionary<char, State>()
+      };    
+    public State b = new State()
+    {
+      Name = "b",
+      IsAcceptState = false,
+      Transitions = new Dictionary<char, State>()
+      };    
+    public State c = new State()
+    {
+      Name = "c",
+      IsAcceptState = false,
+      Transitions = new Dictionary<char, State>()
+      };
+    public State e = new State()
+    {
+      Name = "e",
+      IsAcceptState = true,
+      Transitions = new Dictionary<char, State>()
+      };
+    public State i = new State()
+    {
+      Name = "i",
+      IsAcceptState = true,
+      Transitions = new Dictionary<char, State>()
+      };
+    
+    State InitialState = a;
+    public FA1()
+    {
+      a.Transitions['1'] = b;
+      a.Transitions['0'] = c;
+      b.Transitions['0'] = i;
+      b.Transitions['1'] = a;
+      c.Transitions['0'] = a;
+      c.Transitions['1'] = e;
+      e.Transitions['0'] = b;
+      e.Transitions['1'] = c;
+      i.Transitions['1'] = c;
+      i.Transitions['0'] = b;
+    }
     public bool? Run(IEnumerable<char> s)
     {
-      return false;
+      State current = InitialState;
+      foreach (var c in s)
+      {
+        current = current.Transitions[c];
+        if (current == null)
+          return null;
+      }
+      return current.IsAcceptState;
     }
   }
   
   public class FA3
   {
+    public static State a = new State()
+    {
+      Name = "a",
+      IsAcceptState = false,
+      Transitions = new Dictionary<char, State>()
+      };    
+    public State b = new State()
+    {
+      Name = "b",
+      IsAcceptState = false,
+      Transitions = new Dictionary<char, State>()
+      };    
+    public State c = new State()
+    {
+      Name = "c",
+      IsAcceptState = true,
+      Transitions = new Dictionary<char, State>()
+      };
+    State InitialState = a;
+    public FA1()
+    {
+      a.Transitions['1'] = b;
+      a.Transitions['0'] = a;
+      b.Transitions['0'] = a;
+      b.Transitions['1'] = c;
+      c.Transitions['0'] = c;
+      c.Transitions['1'] = c;
+    }
     public bool? Run(IEnumerable<char> s)
     {
-      return false;
+      State current = InitialState;
+      foreach (var c in s)
+      {
+        current = current.Transitions[c];
+        if (current == null)
+          return null;
+      }
+      return current.IsAcceptState;
     }
   }
 
