@@ -116,7 +116,7 @@ namespace fans
       };
     
     State InitialState = a;
-    public FA1()
+    public FA2()
     {
       a.Transitions['1'] = b;
       a.Transitions['0'] = c;
@@ -163,7 +163,7 @@ namespace fans
       Transitions = new Dictionary<char, State>()
       };
     State InitialState = a;
-    public FA1()
+    public FA3()
     {
       a.Transitions['1'] = b;
       a.Transitions['0'] = a;
